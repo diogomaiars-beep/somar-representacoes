@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Somar Representações | Catálogos</title>
+  <meta name="description" content="Catálogos de produtos da Somar Representações.">
+  <link rel="stylesheet" href="style.css">
+  <script src="config.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+<header class="topbar">
+  <div class="container nav">
+    <a class="brand" href="index.html"><span class="brand-mark">S</span><span>Somar <b>Representações</b></span></a>
+    <a class="btn btn-outline" id="whatsTop" href="#" target="_blank" rel="noopener">Falar no WhatsApp</a>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="container hero-grid">
+      <div>
+        <span class="eyebrow">PORTAL DE CATÁLOGOS</span>
+        <h1>Produtos para o seu negócio em um só lugar.</h1>
+        <p>Consulte os catálogos das marcas representadas pela Somar Representações e baixe os materiais quando precisar.</p>
+        <div class="hero-actions">
+          <a class="btn" href="#catalogos">Ver catálogos</a>
+          <a class="btn btn-ghost" id="whatsHero" href="#" target="_blank" rel="noopener">Solicitar atendimento</a>
+        </div>
+      </div>
+      <div class="hero-card">
+        <div class="mini-label">ATENDIMENTO COMERCIAL</div>
+        <strong>Somar Representações</strong>
+        <p>Brinquedos • Utilidades • Cama, Mesa e Banho • Material Escolar • Sazonais</p>
+        <div class="hero-stat"><span>Catálogos publicados</span><b id="count">—</b></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="container section" id="catalogos">
+    <div class="section-head">
+      <div>
+        <span class="eyebrow">CATÁLOGOS</span>
+        <h2>Encontre o material que procura</h2>
+      </div>
+      <input id="search" class="search" type="search" placeholder="Buscar catálogo ou marca...">
+    </div>
+    <div class="filters" id="filters"></div>
+    <div id="status" class="status">Carregando catálogos...</div>
+    <div id="catalogGrid" class="catalog-grid"></div>
+  </section>
+
+  <section class="section section-soft">
+    <div class="container">
+      <div class="section-head">
+        <div><span class="eyebrow">SEGMENTOS</span><h2>Linhas atendidas</h2></div>
+      </div>
+      <div class="segment-grid">
+        <div class="segment">🛏️ <b>Cama, Mesa e Banho</b><span>Produtos para o lar e varejo.</span></div>
+        <div class="segment">🧸 <b>Brinquedos</b><span>Opções para diferentes faixas etárias.</span></div>
+        <div class="segment">🧰 <b>Utilidades</b><span>Itens de uso diário e organização.</span></div>
+        <div class="segment">📚 <b>Material Escolar</b><span>Itens para volta às aulas e papelaria.</span></div>
+        <div class="segment">🎁 <b>Sazonais</b><span>Campanhas e datas comemorativas.</span></div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="container footer-inner">
+    <div><b>Somar Representações</b><span>Atendimento comercial e representação de produtos.</span></div>
+    <a id="whatsFooter" href="#" target="_blank" rel="noopener">WhatsApp</a>
+  </div>
+</footer>
+<script src="app.js"></script>
+</body>
+</html>
