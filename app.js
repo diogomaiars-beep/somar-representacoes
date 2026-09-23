@@ -71,9 +71,13 @@ function render() {
         <h3>${escapeHtml(c.name)}</h3>
         <p>${escapeHtml(c.description || "Consulte o catálogo de produtos.")}</p>
         <div class="card-actions">
-          <a class="btn small" href="${escapeAttr(c.pdf_url)}" target="_blank" rel="noopener">Ver PDF</a>
-          <a class="btn btn-outline small" href="${escapeAttr(c.pdf_url)}" download>Baixar</a>
-        </div>
+  <a class="btn small" href="${escapeAttr(c.pdf_url)}" target="_blank" rel="noopener">
+    Ver PDF
+  </a>
+  <a class="btn btn-outline small" href="${escapeAttr(c.pdf_url)}?download=true">
+    Baixar
+  </a>
+</div>
       </div>
     </article>`).join("");
 }
