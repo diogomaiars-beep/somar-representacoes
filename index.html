@@ -1,20 +1,18 @@
 <!doctype html>
 <html lang="pt-BR">
 <head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#111827"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="apple-mobile-web-app-title" content="Somar Representações"><link rel="manifest" href="manifest.json"><link rel="apple-touch-icon" href="icon-192.png"><title>Somar Representações</title>
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<header><div class="brand"><b>S</b><span><strong>Somar</strong><small>Representações</small></span></div><button onclick="focusSearch()">⌕</button></header>
+<header><div class="brand"><b>S</b><span><strong>Somar</strong><small>Representações</small></span></div><button class="search-icon" onclick="focusSearch()" aria-label="Buscar">⌕</button></header>
 <main>
-<section class="hero"><label>CATÁLOGOS</label><h1>Encontre seus produtos</h1><p>Catálogos da Somar Representações em um só lugar.</p>
-<div class="search"><span>⌕</span><input id="search" placeholder="Buscar catálogo ou marca..."></div></section>
+<section class="hero"><label>CATÁLOGOS</label><h1>Encontre seus produtos</h1><p>Todos os catálogos da Somar Representações em um só lugar.</p><div class="search"><span>⌕</span><input id="search" autocomplete="off" placeholder="Buscar por catálogo, marca ou categoria..."></div></section>
 <section><div class="head"><h2>Categorias</h2><button onclick="selectCat('Todos')">Ver todas</button></div><div id="cats" class="cats"></div></section>
 <section><div class="head"><h2 id="title">Catálogos</h2><em id="count">0</em></div><div id="status" class="status"></div><div id="grid" class="grid"></div></section>
 </main>
-<nav><button class="active">⌂<small>Início</small></button><button onclick="document.getElementById('grid').scrollIntoView({behavior:'smooth'})">▦<small>Catálogos</small></button><button onclick="focusSearch()">⌕<small>Buscar</small></button></nav>
-<script src="config.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<script src="app.js"></script><script>if("serviceWorker" in navigator){navigator.serviceWorker.register("sw.js").catch(()=>{})}</script>
+<nav><button class="active">⌂<small>Início</small></button><button onclick="document.getElementById('grid').scrollIntoView({behavior:'smooth',block:'start'})">▦<small>Catálogos</small></button><button onclick="focusSearch()">⌕<small>Buscar</small></button></nav>
+<div id="modal" class="modal-root"></div>
+<script src="config.js"></script><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><script src="app.js"></script><script>if("serviceWorker" in navigator){navigator.serviceWorker.register("sw.js").catch(()=>{})}</script>
 </body></html>
