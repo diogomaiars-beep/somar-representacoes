@@ -1,65 +1,278 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin — Somar Representações</title>
+
   <link rel="stylesheet" href="admin.css">
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Somar Representações | Administração</title>
-  <link rel="stylesheet" href="style.css">
-  <script src="config.js"></script>
+
+  <!-- Supabase -->
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="config.js"></script>
+
+  <style>
+    /* Pequenos reforços visuais; o admin.css continua sendo o principal estilo */
+    .category-help {
+      margin-top: 6px;
+      font-size: 13px;
+      color: #64748b;
+    }
+
+    .status {
+      margin: 14px 0;
+      padding: 12px 14px;
+      border-radius: 10px;
+      font-weight: 600;
+      line-height: 1.4;
+    }
+
+    .status:empty {
+      display: none;
+    }
+
+    .status.success {
+      background: #ecfdf5;
+      color: #047857;
+      border: 1px solid #a7f3d0;
+    }
+
+    .status.error {
+      background: #fef2f2;
+      color: #b91c1c;
+      border: 1px solid #fecaca;
+    }
+
+    .admin-topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .admin-brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .admin-brand-mark {
+      width: 42px;
+      height: 42px;
+      border-radius: 12px;
+      display: grid;
+      place-items: center;
+      background: #0f172a;
+      color: #fff;
+      font-weight: 800;
+    }
+
+    .admin-brand strong {
+      display: block;
+      font-size: 18px;
+    }
+
+    .admin-brand span {
+      display: block;
+      color: #64748b;
+      font-size: 13px;
+      margin-top: 2px;
+    }
+
+    .form-actions {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 18px;
+    }
+
+    .file-note {
+      margin-top: 6px;
+      font-size: 12px;
+      color: #64748b;
+    }
+  </style>
 </head>
-<body class="admin-page">
-<header class="topbar"><div class="container nav">
-  <a class="brand" href="index.html"><span class="brand-mark">S</span><span>Somar <b>Representações</b></span></a>
-  <a class="btn btn-outline" href="index.html">Ver site</a>
-</div></header>
 
-<main class="container admin-wrap">
-  <section id="loginBox" class="panel auth-panel">
-    <span class="eyebrow">ÁREA ADMINISTRATIVA</span>
-    <h1>Gerenciar catálogos</h1>
-    <p>Entre para publicar, editar, substituir ou excluir catálogos.</p>
-    <form id="loginForm">
-      <label>E-mail<input id="email" type="email" required autocomplete="username"></label>
-      <label>Senha<input id="password" type="password" required autocomplete="current-password"></label>
-      <button class="btn" type="submit">Entrar</button>
-    </form>
-    <div id="loginMsg" class="status"></div>
-  </section>
+<body>
 
-  <section id="dashboard" hidden>
-    <div class="admin-head">
-      <div><span class="eyebrow">PAINEL</span><h1>Meus catálogos</h1></div>
-      <button id="logout" class="btn btn-outline">Sair</button>
-    </div>
-    <div id="adminMsg" class="status"></div>
-    <div class="admin-grid">
-      <form id="catalogForm" class="panel">
-        <h2 id="formTitle">Novo catálogo</h2>
-        <input type="hidden" id="catalogId">
-        <input type="hidden" id="oldPdfPath">
-        <input type="hidden" id="oldCoverPath">
-        <label>Nome do catálogo<input id="name" required placeholder="Ex.: Catálogo de Utilidades 2026"></label>
-        <label>Marca<input id="brand" required placeholder="Nome da marca"></label>
-        <label>Categoria
-          <select id="category" required>
-            <option>Cama, Mesa e Banho</option><option>Brinquedos</option><option>Utilidades</option><option>Material Escolar</option><option>Sazonais</option>
-          </select>
-        </label>
-        <label>Descrição<textarea id="description" rows="3" placeholder="Descrição curta para aparecer no site."></textarea></label>
-        <label>PDF do catálogo <input id="pdf" type="file" accept="application/pdf"></label>
-        <label>Capa (opcional) <input id="cover" type="file" accept="image/png,image/jpeg,image/webp"></label>
-        <label class="check"><input id="published" type="checkbox" checked> Publicar no site</label>
-        <div class="form-actions"><button class="btn" type="submit">Salvar catálogo</button><button class="btn btn-outline" id="cancelEdit" type="button">Limpar</button></div>
-      </form>
-      <div class="panel">
-        <h2>Catálogos cadastrados</h2>
-        <div id="adminList" class="admin-list"></div>
+  <header class="admin-header">
+    <div class="admin-topbar">
+      <div class="admin-brand">
+        <div class="admin-brand-mark">S</div>
+        <div>
+          <strong>Somar Representações</strong>
+          <span>Painel administrativo de catálogos</span>
+        </div>
+      </div>
+
+      <div class="admin-header-actions">
+        <a class="btn" href="/" target="_blank" rel="noopener">Ver site</a>
+        <button id="logout" type="button" class="btn btn-danger">Sair</button>
       </div>
     </div>
-  </section>
-</main>
-<script src="admin.js"></script>
+  </header>
+
+  <main class="container">
+
+    <!-- LOGIN -->
+    <section id="loginBox" class="card">
+      <h1>Entrar no painel</h1>
+      <p class="muted">Acesse para cadastrar e administrar os catálogos da Somar Representações.</p>
+
+      <div id="loginMsg" class="status" hidden></div>
+
+      <form id="loginForm" novalidate>
+        <div class="field">
+          <label for="email">E-mail</label>
+          <input id="email" name="email" type="email" autocomplete="username" required>
+        </div>
+
+        <div class="field">
+          <label for="password">Senha</label>
+          <input id="password" name="password" type="password" autocomplete="current-password" required>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Entrar</button>
+      </form>
+    </section>
+
+    <!-- PAINEL -->
+    <section id="dashboard" hidden>
+
+      <div class="page-heading">
+        <div>
+          <h1>Catálogos</h1>
+          <p class="muted">Cadastre, edite e organize os catálogos que serão exibidos no site.</p>
+        </div>
+      </div>
+
+      <div id="adminMsg" class="status" hidden></div>
+
+      <!-- FORMULÁRIO -->
+      <section class="card">
+        <div class="card-heading">
+          <div>
+            <h2 id="formTitle">Novo catálogo</h2>
+            <p class="muted">Preencha os dados abaixo e salve o catálogo.</p>
+          </div>
+        </div>
+
+        <form id="catalogForm">
+
+          <input id="catalogId" type="hidden">
+          <input id="oldPdfPath" type="hidden">
+          <input id="oldCoverPath" type="hidden">
+
+          <div class="field">
+            <label for="name">Nome do catálogo</label>
+            <input
+              id="name"
+              name="name"
+              type="text"
+              placeholder="Ex.: Catálogo de Utilidades 2026"
+              required
+            >
+          </div>
+
+          <div class="field">
+            <label for="brand">Marca</label>
+            <input
+              id="brand"
+              name="brand"
+              type="text"
+              placeholder="Nome da marca"
+              required
+            >
+          </div>
+
+          <div class="field">
+            <label for="category">Categoria</label>
+            <select id="category" name="category" required>
+              <option value="Cama, Mesa e Banho">Cama, Mesa e Banho</option>
+              <option value="Brinquedos">Brinquedos</option>
+              <option value="Utilidades">Utilidades</option>
+              <option value="Material Escolar">Material Escolar</option>
+              <option value="Sazonais">Sazonais</option>
+              <option value="Festas">Festas</option>
+              <option value="Natal">Natal</option>
+              <option value="Ferramentas">Ferramentas</option>
+            </select>
+            <div class="category-help">
+              Categorias disponíveis: Cama, Mesa e Banho, Brinquedos, Utilidades,
+              Material Escolar, Sazonais, Festas, Natal e Ferramentas.
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="description">Descrição</label>
+            <textarea
+              id="description"
+              name="description"
+              rows="4"
+              placeholder="Descrição opcional do catálogo"
+            ></textarea>
+          </div>
+
+          <div class="field">
+            <label for="pdf">PDF do catálogo</label>
+            <input
+              id="pdf"
+              name="pdf"
+              type="file"
+              accept="application/pdf,.pdf"
+            >
+            <div class="file-note">
+              Se estiver editando um catálogo, o PDF pode ser deixado vazio para manter o arquivo atual.
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="cover">Capa do catálogo</label>
+            <input
+              id="cover"
+              name="cover"
+              type="file"
+              accept="image/*"
+            >
+            <div class="file-note">
+              Formatos de imagem: JPG, PNG, WEBP ou outro formato aceito pelo navegador.
+            </div>
+          </div>
+
+          <div class="field checkbox-field">
+            <label>
+              <input id="published" name="published" type="checkbox" checked>
+              Publicar catálogo no site
+            </label>
+          </div>
+
+          <div class="form-actions">
+            <button type="submit" class="btn btn-primary">Salvar catálogo</button>
+            <button id="cancelEdit" type="button" class="btn">Cancelar / Limpar</button>
+          </div>
+
+        </form>
+      </section>
+
+      <!-- LISTA -->
+      <section class="card">
+        <div class="card-heading">
+          <div>
+            <h2>Catálogos cadastrados</h2>
+            <p class="muted">Edite ou exclua os catálogos existentes.</p>
+          </div>
+        </div>
+
+        <div id="adminList">
+          <p class="muted">Carregando catálogos...</p>
+        </div>
+      </section>
+
+    </section>
+  </main>
+
+  <script src="admin.js"></script>
 </body>
 </html>
