@@ -1,1 +1,442 @@
-*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:#f5f7fb;color:#172033;font-family:Arial,sans-serif;padding-bottom:78px}body.modal-open{overflow:hidden}header{height:70px;background:#fff;border-bottom:1px solid #e6e9ef;display:flex;align-items:center;justify-content:space-between;padding:0 20px;position:sticky;top:0;z-index:5}.search-icon{border:0;background:none;font-size:28px;cursor:pointer}.brand{display:flex;align-items:center;gap:10px}.brand>b{width:40px;height:40px;border-radius:12px;background:#111827;color:#fff;display:grid;place-items:center;font-size:22px}.brand strong,.brand small{display:block}.brand strong{font-size:19px}.brand small{color:#7b8495;font-size:11px;margin-top:3px}.hero{background:#fff;padding:28px 20px 22px}.hero label{font-size:11px;font-weight:800;letter-spacing:1.5px;color:#7a8494}.hero h1{font-size:29px;margin:8px 0}.hero p{color:#6e7889;font-size:14px;margin:0 0 18px}.search{height:50px;background:#f7f8fa;border:1px solid #e0e5ed;border-radius:14px;display:flex;align-items:center;padding:0 13px;gap:8px}.search input{border:0;outline:0;background:none;width:100%;font-size:14px}.section,section{padding:21px 20px 0;max-width:1200px;margin:auto}.head{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}.head h2{font-size:18px;margin:0}.head button{border:0;background:none;font-weight:700;color:#475569;cursor:pointer}.head em{font-style:normal;background:#e9edf3;border-radius:20px;padding:5px 9px;font-size:12px}.cats{display:flex;gap:8px;overflow:auto;padding-bottom:4px;scrollbar-width:none}.cats::-webkit-scrollbar{display:none}.cat{white-space:nowrap;border:1px solid #e1e6ee;background:#fff;border-radius:13px;padding:11px 13px;font-weight:700;font-size:12px;cursor:pointer}.cat.active{background:#111827;color:#fff}.status{font-size:12px;color:#7b8495;margin:0 0 10px}.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px}.card{background:#fff;border:1px solid #e5e9ef;border-radius:16px;overflow:hidden;box-shadow:0 2px 8px rgba(20,32,51,.03)}.card-main{padding:0;border:0;background:none;width:100%;text-align:left;cursor:pointer}.cover{height:175px;background:linear-gradient(135deg,#eef1f5,#dfe4eb);display:grid;place-items:center;position:relative;overflow:hidden}.cover img{width:100%;height:100%;object-fit:cover;transition:transform .25s}.card:hover .cover img{transform:scale(1.02)}.mark{font-size:42px;font-weight:900;color:#7a8494}.tag{position:absolute;top:9px;left:9px;background:#fff;padding:5px 7px;border-radius:8px;font-size:9px;font-weight:800;box-shadow:0 2px 8px rgba(0,0,0,.08)}.body{padding:12px}.brand-name{font-size:10px;color:#8992a1;font-weight:800;text-transform:uppercase}.body h3{font-size:14px;margin:4px 0 6px;color:#172033}.body p{font-size:11px;color:#7a8494;min-height:30px;margin:0}.card-actions{display:grid;grid-template-columns:1fr 1fr;gap:7px;padding:0 12px 12px}.btn{border:1px solid #dfe4ea;border-radius:10px;padding:10px 6px;text-align:center;text-decoration:none;font-size:11px;font-weight:800;color:#263244;background:#fff;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;min-height:38px}.primary{background:#111827;color:#fff;border-color:#111827}.empty{grid-column:1/-1;text-align:center;padding:38px 20px;background:#fff;border:1px dashed #dce1e8;border-radius:15px;color:#7b8495}.empty strong,.empty span{display:block}.empty strong{color:#354154;margin-bottom:5px}.empty span{font-size:12px}nav{position:fixed;bottom:0;left:0;right:0;height:68px;padding-bottom:env(safe-area-inset-bottom);background:#fff;border-top:1px solid #e6e9ef;display:flex;justify-content:center;gap:50px;z-index:10}nav button{border:0;background:none;color:#8a93a2;font-size:21px;cursor:pointer}nav button.active{color:#111827}nav small{display:block;font-size:10px;font-weight:bold}.modal-root{display:none}.modal-root.open{display:block}.modal-backdrop{position:fixed;inset:0;background:rgba(15,23,42,.58);z-index:50;display:flex;align-items:flex-end;justify-content:center;padding:0}.modal{position:relative;background:#fff;width:100%;max-width:620px;max-height:92vh;overflow:auto;border-radius:22px 22px 0 0;box-shadow:0 -10px 40px rgba(0,0,0,.2)}.close{position:absolute;right:12px;top:12px;width:38px;height:38px;border:0;border-radius:50%;background:rgba(255,255,255,.94);font-size:26px;line-height:1;z-index:2;cursor:pointer}.detail-cover{height:310px;background:linear-gradient(135deg,#eef1f5,#dfe4eb);display:grid;place-items:center;overflow:hidden}.detail-cover img{width:100%;height:100%;object-fit:cover}.detail-mark{font-size:80px;font-weight:900;color:#7a8494}.detail-content{padding:20px}.detail-tag{display:inline-block;background:#eef2f6;border-radius:8px;padding:6px 8px;font-size:10px;font-weight:800}.detail-brand{font-size:11px;color:#8992a1;font-weight:800;text-transform:uppercase;margin-top:14px}.detail-content h2{font-size:23px;margin:5px 0 8px}.detail-content p{color:#687386;font-size:13px;line-height:1.55;margin:0 0 18px}.detail-actions{display:grid;grid-template-columns:1fr 1fr;gap:8px}.detail-actions .btn:last-child{grid-column:1/-1}.big{min-height:44px;font-size:12px}@media(min-width:760px){.grid{grid-template-columns:repeat(4,1fr)}.cover{height:210px}.modal-backdrop{align-items:center;padding:20px}.modal{border-radius:22px;max-height:88vh}.detail-cover{height:340px}}@media(max-width:390px){.grid{grid-template-columns:1fr}.cover{height:210px}.card-actions{grid-template-columns:1fr 1fr}.hero h1{font-size:26px}}
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: Arial, Helvetica, sans-serif;
+  background: #f5f7fb;
+  color: #1f2937;
+}
+
+img {
+  max-width: 100%;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+/* =========================
+   CABEÇALHO
+   ========================= */
+
+header,
+.topbar,
+.header {
+  width: 100%;
+}
+
+.container,
+main,
+.main-content {
+  width: min(1200px, calc(100% - 32px));
+  margin: 0 auto;
+}
+
+/* =========================
+   TÍTULOS E TEXTOS
+   ========================= */
+
+h1,
+h2,
+h3,
+p {
+  margin-top: 0;
+}
+
+h1 {
+  font-size: clamp(1.6rem, 3vw, 2.3rem);
+}
+
+h2 {
+  font-size: clamp(1.25rem, 2.5vw, 1.7rem);
+}
+
+/* =========================
+   CATEGORIAS / FILTROS
+   ========================= */
+
+.categories,
+.category-list,
+.filters,
+.category-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+}
+
+.categories button,
+.category-list button,
+.category-buttons button,
+.filter-btn {
+  border: 0;
+  border-radius: 10px;
+  padding: 10px 15px;
+  cursor: pointer;
+  background: #ffffff;
+  color: #1f2937;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  transition: transform .18s ease, box-shadow .18s ease;
+}
+
+.categories button:hover,
+.category-list button:hover,
+.category-buttons button:hover,
+.filter-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+}
+
+/* =========================
+   GRADE DE CATÁLOGOS
+   ========================= */
+
+.catalog-grid,
+.catalogs-grid,
+.catalog-list,
+#catalogList {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+  gap: 20px;
+  align-items: stretch;
+}
+
+/* =========================
+   CARD DO CATÁLOGO
+   ========================= */
+
+.catalog-card,
+.card,
+.catalog-item {
+  min-width: 0;
+  overflow: hidden;
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 5px 18px rgba(0, 0, 0, 0.08);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  display: flex;
+  flex-direction: column;
+}
+
+/* =========================
+   ÁREA DA CAPA
+   A altura fica delimitada.
+   A imagem não pode escapar dela.
+   ========================= */
+
+.catalog-cover,
+.cover,
+.catalog-image,
+.cover-wrapper,
+.catalog-card .image,
+.catalog-item .image {
+  width: 100%;
+  height: 300px;
+  min-height: 300px;
+  max-height: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background: #ffffff;
+  padding: 10px;
+}
+
+/* Regra principal solicitada:
+   a capa inteira fica visível dentro da área definida. */
+
+.catalog-cover img,
+.cover img,
+.catalog-image img,
+.cover-wrapper img,
+.catalog-card .image img,
+.catalog-item .image img,
+.catalog-card > img,
+.catalog-item > img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  object-position: center center;
+  margin: 0 auto;
+}
+
+/* Caso o HTML use uma tag picture. */
+
+.catalog-cover picture,
+.cover picture,
+.catalog-image picture,
+.cover-wrapper picture {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.catalog-cover picture img,
+.cover picture img,
+.catalog-image picture img,
+.cover-wrapper picture img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+}
+
+/* =========================
+   CONTEÚDO DO CARD
+   ========================= */
+
+.catalog-info,
+.catalog-content,
+.card-content,
+.catalog-card .content,
+.catalog-item .content {
+  padding: 14px 16px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex: 1;
+}
+
+.catalog-info h3,
+.catalog-content h3,
+.card-content h3,
+.catalog-card h3,
+.catalog-item h3 {
+  margin: 0;
+  font-size: 1.05rem;
+  line-height: 1.3;
+  overflow-wrap: anywhere;
+}
+
+.catalog-info p,
+.catalog-content p,
+.card-content p,
+.catalog-card p,
+.catalog-item p {
+  margin: 0;
+  line-height: 1.45;
+  color: #5b6472;
+}
+
+/* =========================
+   BOTÕES
+   ========================= */
+
+.actions,
+.catalog-actions,
+.card-actions,
+.buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: auto;
+}
+
+button,
+.btn,
+.button,
+.btn-primary,
+.btn-secondary {
+  border-radius: 10px;
+  cursor: pointer;
+  transition: transform .18s ease, opacity .18s ease, box-shadow .18s ease;
+}
+
+button:hover,
+.btn:hover,
+.button:hover {
+  transform: translateY(-1px);
+}
+
+button:active,
+.btn:active,
+.button:active {
+  transform: translateY(0);
+}
+
+/* =========================
+   LINKS
+   ========================= */
+
+a {
+  color: inherit;
+}
+
+a.btn,
+a.button {
+  text-decoration: none;
+}
+
+/* =========================
+   FORMULÁRIOS
+   ========================= */
+
+input,
+select,
+textarea {
+  width: 100%;
+  border: 1px solid #d7dce5;
+  border-radius: 10px;
+  background: #ffffff;
+  color: #1f2937;
+  padding: 11px 12px;
+  outline: none;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  border-color: #6b7280;
+  box-shadow: 0 0 0 3px rgba(107, 114, 128, 0.12);
+}
+
+label {
+  display: block;
+  margin-bottom: 6px;
+  font-weight: 600;
+}
+
+/* =========================
+   MENSAGENS / ESTADOS
+   ========================= */
+
+.message,
+.msg,
+.status,
+.alert {
+  border-radius: 10px;
+  padding: 10px 12px;
+}
+
+.hidden {
+  display: none !important;
+}
+
+/* =========================
+   RESPONSIVIDADE
+   ========================= */
+
+@media (max-width: 900px) {
+  .container,
+  main,
+  .main-content {
+    width: min(100% - 24px, 760px);
+  }
+
+  .catalog-grid,
+  .catalogs-grid,
+  .catalog-list,
+  #catalogList {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+  }
+
+  .catalog-cover,
+  .cover,
+  .catalog-image,
+  .cover-wrapper,
+  .catalog-card .image,
+  .catalog-item .image {
+    height: 280px;
+    min-height: 280px;
+    max-height: 280px;
+  }
+}
+
+@media (max-width: 600px) {
+  .container,
+  main,
+  .main-content {
+    width: calc(100% - 20px);
+  }
+
+  .catalog-grid,
+  .catalogs-grid,
+  .catalog-list,
+  #catalogList {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+  }
+
+  .catalog-cover,
+  .cover,
+  .catalog-image,
+  .cover-wrapper,
+  .catalog-card .image,
+  .catalog-item .image {
+    height: 220px;
+    min-height: 220px;
+    max-height: 220px;
+    padding: 7px;
+  }
+
+  .catalog-info,
+  .catalog-content,
+  .card-content,
+  .catalog-card .content,
+  .catalog-item .content {
+    padding: 10px;
+  }
+
+  .catalog-info h3,
+  .catalog-content h3,
+  .card-content h3,
+  .catalog-card h3,
+  .catalog-item h3 {
+    font-size: .92rem;
+  }
+
+  .actions,
+  .catalog-actions,
+  .card-actions,
+  .buttons {
+    flex-direction: column;
+  }
+
+  .actions > *,
+  .catalog-actions > *,
+  .card-actions > *,
+  .buttons > * {
+    width: 100%;
+  }
+}
+
+@media (max-width: 380px) {
+  .catalog-grid,
+  .catalogs-grid,
+  .catalog-list,
+  #catalogList {
+    grid-template-columns: 1fr;
+  }
+
+  .catalog-cover,
+  .cover,
+  .catalog-image,
+  .cover-wrapper,
+  .catalog-card .image,
+  .catalog-item .image {
+    height: 300px;
+    min-height: 300px;
+    max-height: 300px;
+  }
+}
+
+/* =========================================================
+   FIM
+   ========================================================= */
