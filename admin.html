@@ -164,7 +164,7 @@
           <input id="catalogId" type="hidden">
           <input id="oldPdfPath" type="hidden">
           <input id="oldCoverPath" type="hidden">
-
+          <input id="oldRulesPath" type="hidden">
           <div class="field">
             <label for="name">Nome do catálogo</label>
             <input
@@ -227,7 +227,18 @@
               Se estiver editando um catálogo, o PDF pode ser deixado vazio para manter o arquivo atual.
             </div>
           </div>
-
+<div class="field">
+  <label for="rules">📋 Regras Comerciais (PDF)</label>
+  <input
+    id="rules"
+    name="rules"
+    type="file"
+    accept="application/pdf,.pdf"
+  >
+  <div class="file-note">
+    Se estiver editando o catálogo, deixe vazio para manter as regras comerciais atuais.
+  </div>
+</div>
           <div class="field">
             <label for="cover">Capa do catálogo</label>
             <input
