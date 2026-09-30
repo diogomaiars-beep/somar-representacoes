@@ -212,7 +212,7 @@ function editCatalog(id, data) {
   $("published").checked = !!c.published;
   $("oldPdfPath").value = c.pdf_path || "";
   $("oldCoverPath").value = c.cover_path || "";
-  $("oldRulesPath").value = c.rules_path || "";
+  $("oldRulesPath").value = c.rules || "";
   $("pdf").required = false;
   $("rules").required = false;
 
@@ -347,7 +347,7 @@ $("catalogForm")?.addEventListener("submit", async e => {
       description,
       pdf_path: pdfPath,
       cover_path: coverPath,
-      rules_path: rulesPath,
+      rules: rulesPath,
       pdf_url: publicUrl(pdfPath),
       cover_url: publicUrl(coverPath),
       rules_url: publicUrl(rulesPath),
@@ -415,7 +415,7 @@ async function deleteCatalog(id, data) {
     }
 
     await removePath(c.pdf_path);
-    await removePath(c.rules_path);
+    await removePath(c.rules);
     await removePath(c.cover_path);
     await loadAdmin();
     msg("✅ Catálogo excluído com sucesso.");
