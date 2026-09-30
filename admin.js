@@ -52,7 +52,7 @@ function setSavingState(saving) {
 
   if ($("cancelEdit")) $("cancelEdit").disabled = saving;
 
-  ["pdf", "cover", "name", "brand", "category", "description", "published"].forEach(id => {
+  ["pdf", "rules", "cover", "name", "brand", "category", "description", "published"].forEach(id => {
     if ($(id)) $(id).disabled = saving;
   });
 }
@@ -212,7 +212,9 @@ function editCatalog(id, data) {
   $("published").checked = !!c.published;
   $("oldPdfPath").value = c.pdf_path || "";
   $("oldCoverPath").value = c.cover_path || "";
+  $("oldRulesPath").value = c.rules_path || "";
   $("pdf").required = false;
+  $("rules").required = false;
 
   msg('✏️ Editando o catálogo "' + c.name + '".');
   window.scrollTo({ top: 0, behavior: "smooth" });
@@ -283,11 +285,13 @@ $("catalogForm")?.addEventListener("submit", async e => {
   );
 
   let newPdfPath = null;
+  let newRulesPath = null;
   let newCoverPath = null;
 
   try {
     const id = $("catalogId").value || crypto.randomUUID();
     const pdfFile = $("pdf").files[0];
+    const rulesFile = $("rules").files[0];
     const coverFile = $("cover").files[0];
 
     const name = $("name").value.trim();
@@ -301,7 +305,11 @@ $("catalogForm")?.addEventListener("submit", async e => {
     if (!editing && !pdfFile) throw new Error("Selecione o PDF do catálogo.");
 
     if (pdfFile && pdfFile.type !== "application/pdf") {
-      throw new Error("O arquivo selecionado precisa ser um PDF.");
+      throw new Error("O arquivo do catálogo precisa ser um PDF.");
+    }
+
+    if (rulesFile && rulesFile.type !== "application/pdf") {
+      throw new Error("O arquivo de Regras Comerciais precisa ser um PDF.");
     }
 
     if (coverFile && !coverFile.type.startsWith("image/")) {
@@ -309,11 +317,21 @@ $("catalogForm")?.addEventListener("submit", async e => {
     }
 
     const oldPdf = $("oldPdfPath").value;
+    const oldRules = $("oldRulesPath").value;
     const oldCover = $("oldCoverPath").value;
 
     const pdfPath = pdfFile
-      ? (newPdfPath = await uploadIf(pdfFile, "pdfs", "application/pdf", "o PDF"))
+      ? (newPdfPath = await uploadIf(pdfFile, "pdfs", "application/pdf", "o PDF do catálogo"))
       : oldPdf;
+
+    const rulesPath = rulesFile
+      ? (newRulesPath = await uploadIf(
+          rulesFile,
+          "rules",
+          "application/pdf",
+          "as Regras Comerciais"
+        ))
+      : oldRules || null;
 
     const coverPath = coverFile
       ? (newCoverPath = await uploadIf(coverFile, "covers", coverFile.type, "a capa"))
@@ -329,8 +347,10 @@ $("catalogForm")?.addEventListener("submit", async e => {
       description,
       pdf_path: pdfPath,
       cover_path: coverPath,
+      rules_path: rulesPath,
       pdf_url: publicUrl(pdfPath),
       cover_url: publicUrl(coverPath),
+      rules_url: publicUrl(rulesPath),
       published: $("published").checked,
       updated_at: new Date().toISOString()
     };
@@ -343,6 +363,10 @@ $("catalogForm")?.addEventListener("submit", async e => {
 
     if (pdfFile && oldPdf && oldPdf !== pdfPath) {
       await removePath(oldPdf);
+    }
+
+    if (rulesFile && oldRules && oldRules !== rulesPath) {
+      await removePath(oldRules);
     }
 
     if (coverFile && oldCover && oldCover !== coverPath) {
@@ -361,6 +385,7 @@ $("catalogForm")?.addEventListener("submit", async e => {
     console.error("ERRO COMPLETO NO SALVAMENTO:", error);
 
     if (newPdfPath) await removePath(newPdfPath);
+    if (newRulesPath) await removePath(newRulesPath);
     if (newCoverPath) await removePath(newCoverPath);
 
     msg(
@@ -390,6 +415,7 @@ async function deleteCatalog(id, data) {
     }
 
     await removePath(c.pdf_path);
+    await removePath(c.rules_path);
     await removePath(c.cover_path);
     await loadAdmin();
     msg("✅ Catálogo excluído com sucesso.");
@@ -405,6 +431,7 @@ function resetForm(showMessage = true) {
   $("catalogForm").reset();
   $("catalogId").value = "";
   $("oldPdfPath").value = "";
+  $("oldRulesPath").value = "";
   $("oldCoverPath").value = "";
   $("published").checked = true;
   $("pdf").required = true;
